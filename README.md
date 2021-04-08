@@ -8,7 +8,7 @@ Es wird eine angepasste Bibliothek "PS2Keyboard" von Paul Stoffregen verwendet.
 Die Dateien PS2Keyboard.cpp und PS2Keyboard.h wurden modifiziert.
 Der Original-Quellcode steht unter: https://github.com/PaulStoffregen/PS2Keyboard
 
-Als Hardware wird ein Arduino Micro eingesetzt, der im Tastaturgehäuse Platz hat. 
+Als Hardware wird ein Arduino Nano Every eingesetzt, der im Tastaturgehäuse Platz hat. 
 Die Stromversorgung erfolgt über das Anschlusskabel.
 Ein 4-poliger Steckverbinder für die Programmierung des Arduino ist am Tastaturgehäuse angebracht.
 Die Pinbelegung ist:
@@ -25,4 +25,4 @@ D7 = AC1.PA7-Status;
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Tastatur.jpg)
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Arduino.jpg)
+![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Nano.jpg)
