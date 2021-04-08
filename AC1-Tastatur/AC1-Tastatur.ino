@@ -1,6 +1,7 @@
 /* PS/2-Keyboard fuer den AC1 */
 /* Das Programm wurde von Gerd Staffen und Frieder Tonn erstellt */
 /* Es nutzt eine angepasste Bibliothek "PS2Keyboard" von Paul Stoffregen */
+/* Die Dateien PS2Keyboard.cpp und PS2Keyboard.h wurden modifiziert. */
 /* Original-Quellcode: https://github.com/PaulStoffregen/PS2Keyboard */
 
 #include <PS2Keyboard.h>
