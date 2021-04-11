@@ -2,7 +2,8 @@
 Das Programm ermöglicht die Nutzung einer PS/2-Tastatur am AC1.
 
 Mit Hilfe eines Arduino wird das serielle Signal der PS/2-Tastatur in ein paralleles, AC1-konformes Signal gewandelt.
-Die Funktionstasten F1 bis F12 können in der Datei "AC1-Tastatur.ino" mit Strings oder Spezialkommandos belegt werden.
+Die Funktionstasten F1 bis F12 können in der Datei "AC1-Tastatur.ino" mit Strings oder Steuerkommandos belegt werden.
+Eine Änderung der Kursortasten-Codes für AC1- und CP/M-Programme ist ebenfalls möglich.
 
 Es wird eine angepasste Bibliothek "PS2Keyboard" von Paul Stoffregen verwendet.
 Die Dateien PS2Keyboard.cpp und PS2Keyboard.h wurden modifiziert.
