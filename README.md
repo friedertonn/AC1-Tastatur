@@ -13,8 +13,8 @@ Als Hardware wird ein Arduino Nano Every eingesetzt, der im Tastaturgehäuse Pla
 Die Stromversorgung erfolgt über das Anschlusskabel.
 Ein 4-poliger Steckverbinder für die Programmierung des Arduino ist am Tastaturgehäuse angebracht.
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Tastatur.jpg)
+![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Tastatur_mit_Text.jpg)
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Nano.jpg)
+![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Nano_mit_Text.jpg)
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Schaltbild.gif)
+![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Schaltplan.gif)
