@@ -5,12 +5,12 @@ Mit Hilfe eines Arduino wird das serielle Signal der PS/2-Tastatur in ein parall
 Die Funktionstasten F1 bis F12 können in der Datei "AC1-Tastatur.ino" mit Strings oder Steuerkommandos belegt werden.
 Eine Änderung der Kursortasten-Codes für AC1- und CP/M-Programme ist möglich.
 
-Es wird eine angepasste Bibliothek "PS2Keyboard" von Paul Stoffregen verwendet.
+Zur Erfassung der Tastencodes wird eine angepasste Bibliothek "PS2Keyboard" von Paul Stoffregen verwendet.
 Die Dateien PS2Keyboard.cpp und PS2Keyboard.h wurden modifiziert.
 Der Original-Quellcode steht unter: https://github.com/PaulStoffregen/PS2Keyboard
 
-Als Hardware wird ein Arduino Nano Every eingesetzt, der im Tastaturgehäuse Platz hat. 
-Die Stromversorgung erfolgt über das Anschlusskabel.
+Als Hardware wird ein Arduino Nano Every eingesetzt, der auf Grund seiner geringen Größe im Tastaturgehäuse Platz hat. 
+Die Stromversorgung erfolgt über das AC1-Anschlusskabel.
 Ein 4-poliger Steckverbinder für die Programmierung des Arduino ist am Tastaturgehäuse angebracht.
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/PS2-Tastatur_mit_Text.jpg)

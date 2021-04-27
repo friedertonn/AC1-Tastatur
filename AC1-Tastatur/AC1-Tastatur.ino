@@ -90,7 +90,7 @@ void loop() {
       parallel_ausgabe(17);
       parallel_ausgabe(83);
     } else if (zcode == 141) {
-      Serial.print("[End]");   // nur unter CP/M: Pos1 = ^QD
+      Serial.print("[Ende]");  // nur unter CP/M: Ende = ^QD
       parallel_ausgabe(17);
       parallel_ausgabe(68);
     } else {
