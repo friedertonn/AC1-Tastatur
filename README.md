@@ -12,7 +12,7 @@ Der Original-Quellcode steht unter: https://github.com/PaulStoffregen/PS2Keyboar
 Als Hardware wird ein Arduino Nano Every eingesetzt, der auf Grund seiner geringen Größe im Tastaturgehäuse Platz hat. 
 Die Stromversorgung erfolgt über das AC1-Anschlusskabel.
 Ein 4-poliger Steckverbinder für die Programmierung des Arduino ist am Tastaturgehäuse angebracht.
-Über die PINs D13, D12 und D19 können zusätzlich die Grafiktaste, AC1-Reset und AC1-NMI gesteuert werden.
+Über die PINs D13, D12 und A5/D19 können zusätzlich die Grafiktaste, AC1-Reset und AC1-NMI gesteuert werden.
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/PS2-Tastatur_mit_Text.jpg)
 

@@ -9,7 +9,7 @@
 // - einen Prototypen "Nov. 2021" mit Arduino-Nano-Every (Reset --> D20 , NMI --> D21) und
 // - die finale Version "Dez. 2021" mit Arduino-Nano (Reset --> D12 , NMI --> D19)
 // Für die finale Version muss "Leiterplatte_Dez2021" definiert sein!
-// #define Leiterplatte_Dez2021
+#define Leiterplatte_Dez2021
 
 // Die Tastatur kann nach jedem Tastatur-Reset eine Zeichenfolge ausgeben,
 // z.B. "W F0 1\015", um den AC1 auf 4 MHz umzuschalten.
