@@ -58,7 +58,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 31.12.2021 ***");
+  Serial.println F("*** Version vom 02.01.2022 ***");
 #ifdef Leiterplatte_Dez2021
   Serial.println F("Leiterplatte: Dez. 2021");
 #else
@@ -170,11 +170,11 @@ void loop() {
       } break;     
           
       case PS2_HOME_CPM: { 
-        Serial.print F("[Pos1]"); tastenstring("\021S");  // unter CP/M: Pos1 = ^QS
+        tastenstring("\021S");             // unter CP/M: Pos1 = ^QS
       } break;
       
       case PS2_END_CPM: { 
-        Serial.print F("[Ende]"); tastenstring("\021D");  // unter CP/M: Ende = ^QD
+        tastenstring("\021D");             // unter CP/M: Ende = ^QD
       } break;
       
       case PS2_ESC_CTRL: {                 // Strg-ESC --> NMI am AC1

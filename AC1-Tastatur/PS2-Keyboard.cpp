@@ -306,7 +306,8 @@ static char get_iso8859_code(bool kbd_mode, bool cpm_mode)
       } else if (state & (SHIFT_L | SHIFT_R)) {
         if (s < PS2_KEYMAP_SIZE) c = pgm_read_byte(keymap->shift + s);
       } else if (state & CTRL) {
-        if (s < PS2_KEYMAP_SIZE) c = pgm_read_byte(keymap->ctrl + s);
+        if ((s == 0x71) && (state == (CTRL | ALT))) c = AFFENGRIFF;
+        else if (s < PS2_KEYMAP_SIZE) c = pgm_read_byte(keymap->ctrl + s);
       } else if (state & ALT) {
         if (s < PS2_KEYMAP_SIZE) c = pgm_read_byte(keymap->alt + s);
       } else if (state & ALTGR) {

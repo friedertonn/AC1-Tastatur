@@ -9,7 +9,7 @@
 // - einen Prototypen "Nov. 2021" mit Arduino-Nano-Every (Reset --> D20 , NMI --> D21) und
 // - die finale Version "Dez. 2021" mit Arduino-Nano (Reset --> D12 , NMI --> D19)
 // Für die finale Version muss "Leiterplatte_Dez2021" definiert sein!
-#define Leiterplatte_Dez2021
+// #define Leiterplatte_Dez2021
 
 // Die Tastatur kann nach jedem Tastatur-Reset eine Zeichenfolge ausgeben,
 // z.B. "W F0 1\015", um den AC1 auf 4 MHz umzuschalten.
@@ -65,49 +65,49 @@
 // '\037C0' schaltet zurück auf Tastenbelegung: AC1
 const char* FKT_AC1[]={
   "?\015", "?", "?", "\014", 
-  "\026", "\027", "?", "?",
+  "\026", "\027", "?", " F8_AC1",
   "\022", "\025", "\024", "CONT\015"};
 
 // mit Shift:
 const char* FKT_SHIFT_AC1[]={
-  "?", "?", "?", "?",
-  "?", "?", "?", "?",
+  "?", "WF0 0\015", "?", "WF0 1\015",
+  "?", "?", "?", " F8_SHIFT_AC1",
   "?", "?", "?", "?"};
 
 // mit Ctrl:
 const char* FKT_CTRL_AC1[]={
   "?", "?", "?", "?",
-  "?", "?", "?", "?",
+  "?", "?", "?", " F8_CTRL_AC1",
   "?", "?", "?", "?"};
 
 // mit Alt:
 const char* FKT_ALT_AC1[]={
   "?", "?", "?", "?",
-  "?", "?", "?", "?",
-  "?", "?", "?", "?"};
+  "?", "?", "?", " F8_ALT_AC1",
+  "?", "?", "?", " Nano-Every-Version vom 2.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
   "FC\015", "?", "?", "?",
-  "?", "?", "?", "?",
+  "?", "?", "?", " F8_CPM",
   "?", "?", "?", "EXIT\015"};
 
 // mit Shift:
 const char* FKT_SHIFT_CPM[]={
   "?", "?", "?", "?",
-  "?", "?", "?", "?",
+  "?", "?", "?", " F8_SHIFT_CPM",
   "?", "?", "?", "?"};
 
 // mit Ctrl:
 const char* FKT_CTRL_CPM[]={
   "?", "?", "?", "?",
-  "?", "?", "?", "?",
+  "?", "?", "?", " F8_CTRL_CPM",
   "?", "?", "?", "?"};
 
 // mit Alt:
 const char* FKT_ALT_CPM[]={
   "?", "?", "?", "?",
-  "?", "?", "?", "?",
+  "?", "?", "?", " F8_ALT_CPM",
   "?", "?", "?", "?"};
 
 // Zum Schluss noch die Joystick-Konfiguration:
