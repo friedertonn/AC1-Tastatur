@@ -9,7 +9,7 @@
 // - einen Prototypen "Nov. 2021" mit Arduino-Nano-Every (Reset --> D20 , NMI --> D21) und
 // - die finale Version "Dez. 2021" mit Arduino-Nano (Reset --> D12 , NMI --> D19)
 // Für die finale Version muss "Leiterplatte_Dez2021" definiert sein!
-// #define Leiterplatte_Dez2021
+#define Leiterplatte_Dez2021
 
 // Die Tastatur kann nach jedem Tastatur-Reset eine Zeichenfolge ausgeben,
 // z.B. "W F0 1\015", um den AC1 auf 4 MHz umzuschalten.
@@ -21,6 +21,10 @@
 // mit 'xy' * 100 Millisekunden interpretiert.
 // Beispiel: #define Tastatur_Init_String " Hallo\03710 :)\015"
 #define Tastatur_Init_String "\007"  // Tülütütü
+
+// Hier kann festgelegt werden, ob (bei eingeschaltetem NUM-Lock) für das Komma im
+// Ziffernblock ein Komma (0x2C) oder ein Punkt (0x2E) ausgegeben wird
+#define Tastatur_NUM_Komma 0x2E
 
 // Festlegen, wie die Tastatur bei Tastendrücken reagiert:
 // true  --> bei jedem Tastendruck wird PA7 aktiv, bis die Taste losgelassen wird (Original-AC1)
@@ -84,7 +88,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "?", "?", "?", "?",
   "?", "?", "?", " F8_ALT_AC1",
-  "?", "?", "?", " Nano-Every-Version vom 2.1.2022"};
+  "?", "?", "?", " Nano-Version vom 3.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
