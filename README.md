@@ -18,10 +18,15 @@ Der Joystick nutzt die Routine 0x0EB4 im SCCH-Monitor und kann alternativ Tasten
 Die 5 Taster hoch (A0), runter (A1), links (A2), rechts (A3) und Feuer (A4) werden dazu mit den genannten PINs und
 GND verbunden.
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/PS2-Tastatur_mit_Text.jpg)
+Die nachfolgenden Abbildungen zeigen die Umsetzung des Tastatur-Projekts (ohne Joystick):
+
+![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Arduino-Nano_Schaltplan.gif)
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Arduino-Nano_mit_Text.jpg)
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Arduino-Nano_Schaltbild.gif)
+![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/PS2-Tastatur_mit_Text.jpg)
+
+Für den AC1-2010 http://www.ac1-info.de/ wurde eine Leiterplatte im Europakarten-Format 100 mm × 160 mm 
+mit 64-pol. Steckverbinder aufgebaut, welche die alle Programmfunktionen umsetzt:
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_AC1-PIO-CTC.jpg)
