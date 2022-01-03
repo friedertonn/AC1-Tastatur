@@ -27,6 +27,6 @@ Die nachfolgenden Abbildungen zeigen die Umsetzung des Tastatur-Projekts (ohne J
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/PS2-Tastatur_mit_Text.jpg)
 
 Für den AC1-2010 http://www.ac1-info.de/ wurde eine Leiterplatte im Europakarten-Format 100 mm × 160 mm 
-mit 64-pol. Steckverbinder aufgebaut, welche die alle Programmfunktionen umsetzt:
+mit 64-pol. Steckverbinder erstellt, welche alle Programmfunktionen umsetzt:
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_AC1-PIO-CTC.jpg)
