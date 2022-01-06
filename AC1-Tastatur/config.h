@@ -68,51 +68,51 @@
 // '\037C1' schaltet auf Tastenbelegung: CP/M
 // '\037C0' schaltet zurück auf Tastenbelegung: AC1
 const char* FKT_AC1[]={
-  "?\015", "?", "?", "\014", 
-  "\026", "\027", "?", " F8_AC1",
-  "\022", "\025", "\024", "CONT\015"};
+  "?\015", "", "", "CLS\015", 
+  "CLOAD", "CSAVE", "", " F8_AC1",
+  "STOP\015", "RUN\015", "LIST\015", "CONT\015"};
 
 // mit Shift:
 const char* FKT_SHIFT_AC1[]={
-  "?", "WF0 0\015", "?", "WF0 1\015",
-  "?", "?", "?", " F8_SHIFT_AC1",
-  "?", "?", "?", "?"};
+  "", "WF0 0\015", "", "WF0 1\015",
+  "", "", "", " F8_SHIFT_AC1",
+  "", "", "", ""};
 
 // mit Ctrl:
 const char* FKT_CTRL_AC1[]={
-  "?", "?", "?", "?",
-  "?", "?", "?", " F8_CTRL_AC1",
-  "?", "?", "?", "?"};
+  "", "", "", "",
+  "", "", "", " F8_CTRL_AC1",
+  "", "", "", ""};
 
 // mit Alt:
 const char* FKT_ALT_AC1[]={
-  "?", "?", "?", "?",
-  "?", "?", "?", " F8_ALT_AC1",
-  "?", "?", "?", " Arduino-Nano-Version vom 6.1.2022"};
+  "", "", "", "",
+  "", "", "", " F8_ALT_AC1",
+  "", "", "", " Arduino Nano Version vom 6.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
-  "FC\015", "?", "?", "?",
-  "?", "?", "?", " F8_CPM",
-  "?", "?", "?", "EXIT\015"};
+  "FC\015", "DIR\015", "", "",
+  "", "", "", " F8_CPM",
+  "", "", "", "EXIT\015\037C0"};
 
 // mit Shift:
 const char* FKT_SHIFT_CPM[]={
-  "?", "?", "?", "?",
-  "?", "?", "?", " F8_SHIFT_CPM",
-  "?", "?", "?", "?"};
+  "", "", "", "",
+  "", "", "", " F8_SHIFT_CPM",
+  "", "", "", ""};
 
 // mit Ctrl:
 const char* FKT_CTRL_CPM[]={
-  "?", "?", "?", "?",
-  "?", "?", "?", " F8_CTRL_CPM",
-  "?", "?", "?", "?"};
+  "", "", "", "",
+  "", "", "", " F8_CTRL_CPM",
+  "", "", "", ""};
 
 // mit Alt:
 const char* FKT_ALT_CPM[]={
-  "?", "?", "?", "?",
-  "?", "?", "?", " F8_ALT_CPM",
-  "?", "?", "?", "?"};
+  "", "", "", "",
+  "", "", "", " F8_ALT_CPM",
+  "", "", "", ""};
 
 // Zum Schluss noch die Joystick-Konfiguration:
 // Welche Joystick-Tastendefinition soll nach dem Reset aktiv sein?
