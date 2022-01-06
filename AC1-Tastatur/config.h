@@ -88,7 +88,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "?", "?", "?", "?",
   "?", "?", "?", " F8_ALT_AC1",
-  "?", "?", "?", " Nano-Version vom 3.1.2022"};
+  "?", "?", "?", " Arduino-Nano-Version vom 6.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
@@ -129,9 +129,9 @@ const byte JOY_CODE[11][5] = {
   {11, 10, 8, 9, 13},           // Mode 2 (AltGr-F2): AC1-Kursortasten + Enter, z.B. GHOSTTOWN
   {11, 10, 8, 9, 32},           // Mode 3 (AltGr-F3): AC1-Kursortasten + Space, z.B. ACBALL
   {32, 13, 8, 9, 32},           // Mode 4 (AltGr-F4): Belegung für ACTRIS
-  {'5', '2', '1', '3', 0x20},   // Mode 5 (AltGr-F5): Ziffernblock und Space, z.B. WURMI
-  {'G', 'B', 'K', 'L', 0x0D},   // Mode 6 (AltGr-F6): Belegung für Motocycle
-  {'T', 'V', 'F', 'G', 0x0D},   // Mode 7 (AltGr-F7): Belegung für Pacman
+  {'5', '2', '1', '3', 0x20},   // Mode 5 (AltGr-F5): Ziffernblock + Space, z.B. WURMI
+  {'T', 'V', 'F', 'G', 0x0D},   // Mode 6 (AltGr-F6): Belegung für Pacman
+  {0, 0, 0, 0, 0},              // Mode 8 (AltGr-F7):
   {0, 0, 0, 0, 0},              // Mode 8 (AltGr-F8):
   {0, 0, 0, 0, 0},              // Mode 9 (AltGr-F9):
   {0, 0, 0, 0, 0},              // Mode 10 (AltGr-F10):

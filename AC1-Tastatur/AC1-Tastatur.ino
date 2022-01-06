@@ -236,7 +236,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 03.01.2022 ***");
+  Serial.println F("*** Version vom 06.01.2022 ***");
 #ifdef Leiterplatte_Dez2021
   Serial.println F("Leiterplatte: Dez. 2021");
 #else

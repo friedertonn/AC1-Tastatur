@@ -30,3 +30,5 @@ Für den AC1-2010 http://www.ac1-info.de/ wurde eine Leiterplatte im Europakarte
 mit 64-pol. Steckverbinder erstellt, welche alle Programmfunktionen umsetzt:
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_AC1-PIO-CTC.jpg)
+
+![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_aufgebaut.jpg)
