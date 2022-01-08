@@ -16,14 +16,8 @@
 const int DataPin = 2;    // D2  - PS/2-Data
 const int IRQpin  = 3;    // D3  - PS/2-CLK
 const int GrafPin = 13;   // D13 - SCCH-Grafiktaste --> PIO-B2
-
-#ifdef Leiterplatte_Dez2021
-const int RESETpin = 12;  // D12 - RESET AC1 --> finale Leiterplatte vom Dez. 2021
-const int NMIpin = 19;    // D19 - NMI
-#else
-const int RESETpin = 20;  // D20 - RESET AC1 --> Prototyp Leiterplatte vom Nov. 2021
-const int NMIpin = 21;    // D21 - NMI
-#endif
+const int RESETpin = 12;  // D12 - AC1-RESET
+const int NMIpin = 19;    // D19 - AC1-NMI
 
 bool kbd_mode;  // Keyboard-Mode: true => PA7=HIGH, bis Taste losgelassen wird; false => 40ms-Impuls auf PA7  
 bool capslock;  // Flag fuer die Caps-Lock Taste
@@ -236,12 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 06.01.2022 ***");
-#ifdef Leiterplatte_Dez2021
-  Serial.println F("Leiterplatte: Dez. 2021");
-#else
-  Serial.println F("Leiterplatte: Nov. 2021");
-#endif
+  Serial.println F("*** Version vom 08.01.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -351,7 +340,7 @@ void loop() {
         if (s8 == 0x00) code = c8;              // ohne Shift
         else if (s8 == 0x40) code = c8 + 0x20;  // mit Shift
         else if (s8 == 0x20) code = c8 - 0x40;  // mit Ctrl
-        else if ((s8 == 0x04) && (c8 == 'Q')) code = 0x40;  // AltGr-Q --> '@'
+        else if ((s8 == 0x04) && (c8 == 'Q')) code = 0x40;  // AltGr+Q --> '@'
       }
 
       else if (c8 >= 0x61 && c8 <= 0x6C) {  // Funktionstasten F1 bis F12
@@ -420,27 +409,27 @@ void loop() {
             if (!cpm_mode) code = 0x04;  // ^D
             else code = 0x07;            // unter CP/M: ^G
           } break;
-          case 0x1B: code = 0x1B; break; // ESC
+          case 0x1B: code = 0x03; break; // ESC --> ohne Shift als Ctrl+C
           case 0x1C: code = 0x7F; break; // Backspace
           case 0x1D: code = 0x17; break; // Tab
           case 0x1E: code = 0x0D; break; // Enter
           case 0x1F: code = 0x20; break; // Space
-          case 0x20: code = 0x30; break; // NUM-'0'
-          case 0x21: code = 0x31; break; // NUM-'1'
-          case 0x22: code = 0x32; break; // NUM-'2'
-          case 0x23: code = 0x33; break; // NUM-'3'
-          case 0x24: code = 0x34; break; // NUM-'4'
-          case 0x25: code = 0x35; break; // NUM-'5'
-          case 0x26: code = 0x36; break; // NUM-'6'
-          case 0x27: code = 0x37; break; // NUM-'7'
-          case 0x28: code = 0x38; break; // NUM-'8'
-          case 0x29: code = 0x39; break; // NUM-'9'
-          case 0x2A: code = Tastatur_NUM_Komma; break; // NUM-',' siehe config.h
-          case 0x2B: code = 0x0D; break; // NUM-Enter
-          case 0x2C: code = 0x2B; break; // NUM-'+'
-          case 0x2D: code = 0x2D; break; // NUM-'-'
-          case 0x2E: code = 0x2A; break; // NUM-'*'
-          case 0x2F: code = 0x2F; break; // NUM-'/'
+          case 0x20: code = 0x30; break; // NUM+'0'
+          case 0x21: code = 0x31; break; // NUM+'1'
+          case 0x22: code = 0x32; break; // NUM+'2'
+          case 0x23: code = 0x33; break; // NUM+'3'
+          case 0x24: code = 0x34; break; // NUM+'4'
+          case 0x25: code = 0x35; break; // NUM+'5'
+          case 0x26: code = 0x36; break; // NUM+'6'
+          case 0x27: code = 0x37; break; // NUM+'7'
+          case 0x28: code = 0x38; break; // NUM+'8'
+          case 0x29: code = 0x39; break; // NUM+'9'
+          case 0x2A: code = Tastatur_NUM_Komma; break; // NUM+',' siehe config.h
+          case 0x2B: code = 0x0D; break; // NUM+Enter
+          case 0x2C: code = 0x2B; break; // NUM+'+'
+          case 0x2D: code = 0x2D; break; // NUM+'-'
+          case 0x2E: code = 0x2A; break; // NUM+'*'
+          case 0x2F: code = 0x2F; break; // NUM+'/'
           case 0x3A: code = 0x5B; break; // Ä
           case 0x3B: code = 0x2C; break; // ,
           case 0x3C: code = 0x7E; break; // ß
@@ -456,9 +445,9 @@ void loop() {
         }
       }
 
-      else if (s8 == 0x40) {  // weitere Tastencodes mit Shift
+      else if ((s8 == 0x40) || (s8 == 0x41)) {  // weitere Tastencodes mit Shift
         switch (c8) {
-          case 0x1B: code = 0x1B; break; // ESC
+          case 0x1B: code = 0x1B; break; // ESC --> mit Shift als "ESC"
           case 0x3A: code = 0x7B; break; // ä
           case 0x3B: code = 0x3B; break; // ;
           case 0x3C: code = 0x3F; break; // ?
@@ -475,7 +464,7 @@ void loop() {
       
       else if ((s8 == 0x20) || (s8 == 0x21)) {  // weitere Tastencodes mit Ctrl
         switch (c8) {
-          case 0x1B: {                   // Ctrl-ESC --> NMI am AC1
+          case 0x1B: {                   // Ctrl+ESC --> NMI am AC1
             Serial.println F(" ==NMI== ");
             digitalWrite(NMIpin,HIGH);
             delay(Impulslaenge_NMI);     // siehe config.h
@@ -490,7 +479,7 @@ void loop() {
       
       else if (s8 == 0x09) {  // weitere Tastencodes mit Alt
         switch (c8) {
-          case 0x1B: {                    // Alt-ESC --> AC1-Reset + PS/2-Tastatur-Reset
+          case 0x1B: {                    // Alt+ESC --> AC1-Reset + PS/2-Tastatur-Reset
             Serial.println F(" ==RESET== ");
             digitalWrite(RESETpin,HIGH);
             delay(Impulslaenge_Reset);    // siehe config.h
@@ -504,11 +493,11 @@ void loop() {
       
       else if ((s8 == 0x04) || (s8 == 0x05)) {  // weitere Tastencodes mit AltGr
         switch (c8) {
-          case 0x12: {                   // AltGr-1
+          case 0x12: {                   // AltGr+1
             kbd_mode = true; 
             Serial.println F("Tastendruck: Taste-PA7"); 
           } break;
-          case 0x19: {                   // AltGr-0
+          case 0x19: {                   // AltGr+0
             kbd_mode = false; 
             Serial.println F("Tastendruck: 40ms-Impuls"); 
           } break;
@@ -518,7 +507,7 @@ void loop() {
         }
       }
 
-      else if ((c16 == 0x282A) || (c16 == 0x291A) || (c16 == 0x382A) || (c16 == 0x391A)) {  // Strg-Alt-Entf --> AC1-Reset
+      else if ((c16 == 0x282A) || (c16 == 0x291A) || (c16 == 0x382A) || (c16 == 0x391A)) {  // Ctrl+Alt+Entf --> AC1-Reset
         Serial.println F(" ==AFFENGRIFF== ");
         digitalWrite(RESETpin,HIGH);
         delay(Impulslaenge_Reset);  // siehe config.h

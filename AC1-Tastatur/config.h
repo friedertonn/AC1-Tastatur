@@ -5,12 +5,6 @@
 // Bei Bedarf können die Parameter nach Vorliebe und Erfordernis angepasst werden,
 // z.B. Ausführen eines Monitor-Befehls nach Reset, Änderungen der Funktionstasten, ...
 
-// Vor der Leiterplatte gibt es 2 Versionen:
-// - einen Prototypen "Nov. 2021" mit Arduino-Nano-Every (Reset --> D20 , NMI --> D21) und
-// - die finale Version "Dez. 2021" mit Arduino-Nano (Reset --> D12 , NMI --> D19)
-// Für die finale Version muss "Leiterplatte_Dez2021" definiert sein!
-#define Leiterplatte_Dez2021
-
 // Die Tastatur kann nach jedem Tastatur-Reset eine Zeichenfolge ausgeben,
 // z.B. "W F0 1\015", um den AC1 auf 4 MHz umzuschalten.
 // Der Code '\015' steht dabei die die Enter-Taste.
@@ -88,7 +82,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " Arduino Nano Version vom 6.1.2022"};
+  "", "", "", " AC1-Tastatur.ino - Version vom 8.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
@@ -126,17 +120,17 @@ const char* FKT_ALT_CPM[]={
 
 // Joystick-Tastendefinitionen: 11 Definitionen, 5 Tastencodes: hoch, runter, links, rechts, Feuer
 const byte JOY_CODE[11][5] = {
-  {11, 10, 8, 9, 13},           // Mode 2 (AltGr-F2): AC1-Kursortasten + Enter, z.B. GHOSTTOWN
-  {11, 10, 8, 9, 32},           // Mode 3 (AltGr-F3): AC1-Kursortasten + Space, z.B. ACBALL
-  {32, 13, 8, 9, 32},           // Mode 4 (AltGr-F4): Belegung für ACTRIS
-  {'5', '2', '1', '3', 0x20},   // Mode 5 (AltGr-F5): Ziffernblock + Space, z.B. WURMI
-  {'T', 'V', 'F', 'G', 0x0D},   // Mode 6 (AltGr-F6): Belegung für Pacman
-  {0, 0, 0, 0, 0},              // Mode 8 (AltGr-F7):
-  {0, 0, 0, 0, 0},              // Mode 8 (AltGr-F8):
-  {0, 0, 0, 0, 0},              // Mode 9 (AltGr-F9):
-  {0, 0, 0, 0, 0},              // Mode 10 (AltGr-F10):
-  {0, 0, 0, 0, 0},              // Mode 11 (AltGr-F11):
-  {0, 0, 0, 0, 0}};             // Mode 12 (AltGr-F12):
+  {11, 10, 8, 9, 13},           // Mode 2 (AltGr+F2): AC1-Kursortasten + Enter, z.B. GHOSTTOWN
+  {11, 10, 8, 9, 32},           // Mode 3 (AltGr+F3): AC1-Kursortasten + Space, z.B. ACBALL
+  {32, 13, 8, 9, 32},           // Mode 4 (AltGr+F4): Belegung für ACTRIS
+  {'5', '2', '1', '3', 0x20},   // Mode 5 (AltGr+F5): Ziffernblock + Space, z.B. WURMI
+  {'T', 'V', 'F', 'G', 0x0D},   // Mode 6 (AltGr+F6): Belegung für Pacman
+  {0, 0, 0, 0, 0},              // Mode 8 (AltGr+F7):
+  {0, 0, 0, 0, 0},              // Mode 8 (AltGr+F8):
+  {0, 0, 0, 0, 0},              // Mode 9 (AltGr+F9):
+  {0, 0, 0, 0, 0},              // Mode 10 (AltGr+F10):
+  {0, 0, 0, 0, 0},              // Mode 11 (AltGr+F11):
+  {0, 0, 0, 0, 0}};             // Mode 12 (AltGr+F12):
 
 //
 // Ende der Konfigurationsdatei

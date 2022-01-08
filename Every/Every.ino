@@ -20,14 +20,8 @@
 const int DataPin = 2;    // D2  - PS/2-Data
 const int IRQpin  = 3;    // D3  - PS/2-CLK
 const int GrafPin = 13;   // D13 - SCCH-Grafiktaste --> PIO-B2
-
-#ifdef Leiterplatte_Dez2021
-const int RESETpin = 12;  // D12 - RESET AC1 --> finale Leiterplatte vom Dez. 2021
-const int NMIpin = 19;    // D19 - NMI
-#else
-const int RESETpin = 20;  // D20 - RESET AC1 --> Prototyp Leiterplatte vom Nov. 2021
-const int NMIpin = 21;    // D21 - NMI
-#endif
+const int RESETpin = 20;  // D20 - AC1-RESET
+const int NMIpin = 21;    // D21 - AC1-NMI
 
 byte c;
 bool kbd_mode;  // Keyboard-Mode: true => PA7=HIGH, bis Taste losgelassen wird; false => 40ms-Impuls auf PA7  
@@ -58,12 +52,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 02.01.2022 ***");
-#ifdef Leiterplatte_Dez2021
-  Serial.println F("Leiterplatte: Dez. 2021");
-#else
-  Serial.println F("Leiterplatte: Nov. 2021");
-#endif
+  Serial.println F("*** Version vom 08.01.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -117,25 +106,25 @@ void loop() {
       else tastenstring(FKT_CPM[c - PS2_F1]);
     }
     
-    // Funktionstasten Shift-F1 bis Shift-F12:
+    // Funktionstasten Shift+F1 bis Shift+F12:
     else if ((c >= PS2_SHIFT_F1) && (c <= PS2_SHIFT_F12)) {
       if (!cpm_mode) tastenstring(FKT_SHIFT_AC1[c - PS2_SHIFT_F1]);
       else tastenstring(FKT_SHIFT_CPM[c - PS2_SHIFT_F1]);
     }
     
-    // Funktionstasten Ctrl-F1 bis Ctrl-F12:
+    // Funktionstasten Ctrl+F1 bis Ctrl+F12:
     else if ((c >= PS2_CTRL_F1) && (c <= PS2_CTRL_F12)) {
       if (!cpm_mode) tastenstring(FKT_CTRL_AC1[c - PS2_CTRL_F1]);
       else tastenstring(FKT_CTRL_CPM[c - PS2_CTRL_F1]);
     }
     
-    // Funktionstasten Alt-F1 bis Alt-F12:
+    // Funktionstasten Alt+F1 bis Alt+F12:
     else if ((c >= PS2_ALT_F1) && (c <= PS2_ALT_F12)) {
       if (!cpm_mode) tastenstring(FKT_ALT_AC1[c - PS2_ALT_F1]);
       else tastenstring(FKT_ALT_CPM[c - PS2_ALT_F1]);
     }
     
-    // Joystick-Mode einstellen (AltGr-F1 bis AltGr-F12):
+    // Joystick-Mode einstellen (AltGr+F1 bis AltGr+F12):
     else if ((c >= PS2_ALTGR_F1) && (c <= PS2_ALTGR_F12)) {
       joy_mode = c - PS2_ALTGR_F1 + 1;
       Serial.print("Joystick-Mode = ");
@@ -177,22 +166,21 @@ void loop() {
         tastenstring("\021D");             // unter CP/M: Ende = ^QD
       } break;
       
-      case PS2_ESC_CTRL: {                 // Strg-ESC --> NMI am AC1
+      case PS2_ESC_CTRL: {                 // Ctrl+ESC --> AC1-NMI
         Serial.println F(" ==NMI== ");
         digitalWrite(NMIpin,HIGH);
         delay(Impulslaenge_NMI);           // siehe config.h
         digitalWrite(NMIpin,LOW);
       } break;       
          
-      case PS2_ESC_ALT: {                  // Alt-ESC --> AC1-Reset + PS/2-Tastatur-Reset
+      case PS2_ESC_ALT: {                  // Alt+ESC --> AC1-Reset
         Serial.println F(" ==RESET== ");
         digitalWrite(RESETpin,HIGH);
         delay(Impulslaenge_Reset);         // siehe config.h
         digitalWrite(RESETpin,LOW);
-        // TODO: Resetbefehl für die PS/2-Tastatur einfügen
       } break;
       
-      case AFFENGRIFF: {                   // Strg-Alt-Entf --> AC1-Reset
+      case AFFENGRIFF: {                   // Ctrl+Alt+Entf --> AC1-Reset
         Serial.println F(" ==AFFENGRIFF== ");
         digitalWrite(RESETpin,HIGH);
         delay(Impulslaenge_Reset);         // siehe config.h
