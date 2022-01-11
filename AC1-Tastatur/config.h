@@ -16,8 +16,16 @@
 // Beispiel: #define Tastatur_Init_String " Hallo\03710 :)\015"
 #define Tastatur_Init_String "\007"  // Tülütütü
 
+// Bei einigen Rechnern ist es notwendig, bei der Ausgabe von Tastenstrings
+// zwischen den einzelnen Zeichen eine Verzögerung (in Millisekunden) zu definieren.
+#define Tastenstring_Delay 40
+
+// Die TAB-Taste ist beim ACC mit 0x17 und beim SCCH mit 0x0F belegt.
+// Hier kann man sich für eine der beiden Varianten entscheiden.
+#define Tastatur_TAB_Taste 0x0F
+
 // Hier kann festgelegt werden, ob (bei eingeschaltetem NUM-Lock) für das Komma im
-// Ziffernblock ein Komma (0x2C) oder ein Punkt (0x2E) ausgegeben wird
+// Ziffernblock ein Komma (0x2C) oder ein Punkt (0x2E) ausgegeben wird.
 #define Tastatur_NUM_Komma 0x2E
 
 // Festlegen, wie die Tastatur bei Tastendrücken reagiert:
@@ -82,7 +90,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " AC1-Tastatur.ino - Version vom 8.1.2022"};
+  "", "", "", " AC1-Tastatur.ino - Version vom 11.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={

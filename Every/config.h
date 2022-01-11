@@ -16,6 +16,18 @@
 // Beispiel: #define Tastatur_Init_String " Hallo\03710 :)\015"
 #define Tastatur_Init_String "\007"  // Tülütütü
 
+// Bei einigen Rechnern ist es notwendig, bei der Ausgabe von Tastenstrings
+// zwischen den einzelnen Zeichen eine Verzögerung (in Millisekunden) zu definieren.
+#define Tastenstring_Delay 40
+
+// Die TAB-Taste ist beim ACC mit 0x17 und beim SCCH mit 0x0F belegt.
+// Hier kann man sich für eine der beiden Varianten entscheiden.
+// Definition in der Datei PS2-Keyboard.h: --> #define PS2_TAB 0x0F 
+
+// Hier kann festgelegt werden, ob (bei eingeschaltetem NUM-Lock) für das Komma im
+// Ziffernblock ein Komma (0x2C) oder ein Punkt (0x2E) ausgegeben wird.
+// Definition in der Datei PS2-Keyboard.h: --> #define PS2_NUM_KOMMA 0x2E
+
 // Festlegen, wie die Tastatur bei Tastendrücken reagiert:
 // true  --> bei jedem Tastendruck wird PA7 aktiv, bis die Taste losgelassen wird (Original-AC1)
 // false --> bei jedem Tastendruck 40ms-Impuls auf PA7, dann 40ms Pause
@@ -78,7 +90,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " Every.ino - Version vom 8.1.2022"};
+  "", "", "", " Every.ino - Version vom 11.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
@@ -116,17 +128,17 @@ const char* FKT_ALT_CPM[]={
 
 // Joystick-Tastendefinitionen: 11 Definitionen, 5 Tastencodes: hoch, runter, links, rechts, Feuer
 const byte JOY_CODE[11][5] = {
-  {11, 10, 8, 9, 13},           // Mode 2 (AltGr-F2): AC1-Kursortasten + Enter, z.B. GHOSTTOWN
-  {11, 10, 8, 9, 32},           // Mode 3 (AltGr-F3): AC1-Kursortasten + Space, z.B. ACBALL
-  {32, 13, 8, 9, 32},           // Mode 4 (AltGr-F4): Belegung für ACTRIS
-  {'5', '2', '1', '3', 0x20},   // Mode 5 (AltGr-F5): Ziffernblock + Space, z.B. WURMI
-  {'T', 'V', 'F', 'G', 0x0D},   // Mode 6 (AltGr-F6): Belegung für Pacman
-  {0, 0, 0, 0, 0},              // Mode 8 (AltGr-F7):
-  {0, 0, 0, 0, 0},              // Mode 8 (AltGr-F8):
-  {0, 0, 0, 0, 0},              // Mode 9 (AltGr-F9):
-  {0, 0, 0, 0, 0},              // Mode 10 (AltGr-F10):
-  {0, 0, 0, 0, 0},              // Mode 11 (AltGr-F11):
-  {0, 0, 0, 0, 0}};             // Mode 12 (AltGr-F12):
+  {11, 10, 8, 9, 13},           // Mode 2 (AltGr+F2): AC1-Kursortasten + Enter, z.B. GHOSTTOWN
+  {11, 10, 8, 9, 32},           // Mode 3 (AltGr+F3): AC1-Kursortasten + Space, z.B. ACBALL
+  {32, 13, 8, 9, 32},           // Mode 4 (AltGr+F4): Belegung für ACTRIS
+  {'5', '2', '1', '3', 0x20},   // Mode 5 (AltGr+F5): Ziffernblock + Space, z.B. WURMI
+  {'T', 'V', 'F', 'G', 0x0D},   // Mode 6 (AltGr+F6): Belegung für Pacman
+  {0, 0, 0, 0, 0},              // Mode 8 (AltGr+F7):
+  {0, 0, 0, 0, 0},              // Mode 8 (AltGr+F8):
+  {0, 0, 0, 0, 0},              // Mode 9 (AltGr+F9):
+  {0, 0, 0, 0, 0},              // Mode 10 (AltGr+F10):
+  {0, 0, 0, 0, 0},              // Mode 11 (AltGr+F11):
+  {0, 0, 0, 0, 0}};             // Mode 12 (AltGr+F12):
 
 //
 // Ende der Konfigurationsdatei

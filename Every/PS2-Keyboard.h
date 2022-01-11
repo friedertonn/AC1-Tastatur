@@ -32,8 +32,10 @@
 // Every call to read() returns a single byte for each
 // keystroke.  These configure what byte will be returned
 // for each "special" key.  To ignore a key, use zero.
-#define PS2_ESC              27  // geaendert, eigentlich 27h
-#define PS2_TAB              23  // geaendert, eigentlich 9
+#define PS2_ESC               3  // ESC --> ohne Shift als Ctrl+C
+#define PS2_SHIFT_ESC        27  // ESC --> mit Shift als "ESC"
+#define PS2_TAB            0x0F  // siehe config.h
+#define PS2_NUM_KOMMA      0x2E  // siehe config.h
 #define PS2_ENTER            13
 #define PS2_INSERT_AC1        5  // AC1 = 05h, CP/M = 16h
 #define PS2_INSERT_CPM       22
@@ -133,8 +135,8 @@
 #define PS2_ALTGR_1         189  // AltGr+1 --> PA7 = high, so lange die Taste gedrückt ist
 #define PS2_HOME_CPM        190
 #define PS2_END_CPM         191
-#define PS2_ESC_CTRL        192  // NMI
-#define PS2_ESC_ALT         193  // RESET
+#define PS2_CTRL_ESC        192  // NMI
+#define PS2_ALT_ESC         193  // RESET
 #define PS2_CAPS            194  // Caps-Lock
 #define PS2_SCROLL          195  // Rollen
 #define PS2_NUM             196  // NUM-Lock 

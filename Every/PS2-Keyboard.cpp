@@ -22,7 +22,6 @@
   - Gross- und Kleinbuchstaben getauscht, Umschalten mit Caps-Lock
   - F-Tasten belegt mit Code 128-187 (= 5 Ebenen)
   - weitere Funktionen ab Code 188
-  - rechte Ctrl-Taste repariert
   - Affengriff hinzugefügt
 
   Version 2.4 (March 2013)
@@ -142,14 +141,14 @@ const PROGMEM PS2Keymap_t PS2Keymap_German = {   // AC1-Mode + Grossbuchstaben
   PS2_CAPS /*CapsLock*/, 0 /*Rshift*/, PS2_ENTER /*Enter*/, '+', 0, '#', 0, 0,
   0, '<', 0, 0, 0, 0, PS2_BACKSPACE, 0,
   0, '1', 0, '4', '7', 0, 0, 0,
-  '0', '.', '2', '5', '6', '8', 03 /*ESC*/, PS2_NUM /*NumLock*/,
+  '0', PS2_NUM_KOMMA, '2', '5', '6', '8', PS2_ESC /*ESC*/, PS2_NUM /*NumLock*/,
   PS2_F11, '+', '3', '-', '*', '9', PS2_SCROLL, 0,
   0, 0, 0, PS2_F7 },
   //
   // with shift
   //
   { 0, PS2_SHIFT_F9, 0, PS2_SHIFT_F5, PS2_SHIFT_F3, PS2_SHIFT_F1, PS2_SHIFT_F2, PS2_SHIFT_F12,
-  0, PS2_SHIFT_F10, PS2_SHIFT_F8, PS2_SHIFT_F6, PS2_SHIFT_F4, PS2_TAB, PS2_DEGREE_SIGN, 0,
+  0, PS2_SHIFT_F10, PS2_SHIFT_F8, PS2_SHIFT_F6, PS2_SHIFT_F4, 0, PS2_DEGREE_SIGN, 0,
   0, 0 /*Lalt*/, 0 /*Lshift*/, 0, 0 /*Lctrl*/, 'q', '!', 0,
   0, 0, 'y', 's', 'a', 'w', '"', 0,
   0, 'c', 'x', 'd', 'e', '$', PS2_SECTION_SIGN, 0,
@@ -162,7 +161,7 @@ const PROGMEM PS2Keymap_t PS2Keymap_German = {   // AC1-Mode + Grossbuchstaben
   0 /*CapsLock*/, 0 /*Rshift*/, PS2_ENTER /*Enter*/, '*', 0, '\'', 0, 0,
   0, '>', 0, 0, 0, 0, PS2_BACKSPACE, 0,
   0, '1', 0, '4', '7', 0, 0, 0,
-  '0', '.', '2', '5', '6', '8', PS2_ESC /*ESC*/, 0 /*NumLock*/,
+  '0', PS2_NUM_KOMMA, '2', '5', '6', '8', PS2_SHIFT_ESC /*ESC*/, 0 /*NumLock*/,
   PS2_SHIFT_F11, '+', '3', '-', '*', '9', PS2_SCROLL, 0,
   0, 0, 0, PS2_SHIFT_F7 },
   //
@@ -182,7 +181,7 @@ const PROGMEM PS2Keymap_t PS2Keymap_German = {   // AC1-Mode + Grossbuchstaben
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, PS2_ESC_CTRL, 0,
+  0, 0, 0, 0, 0, 0, PS2_CTRL_ESC, 0,
   PS2_CTRL_F11, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, PS2_CTRL_F7 },
   //
@@ -202,7 +201,7 @@ const PROGMEM PS2Keymap_t PS2Keymap_German = {   // AC1-Mode + Grossbuchstaben
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, PS2_ESC_ALT, 0,
+  0, 0, 0, 0, 0, 0, PS2_ALT_ESC, 0,
   PS2_ALT_F11, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, PS2_ALT_F7 },
   //

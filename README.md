@@ -1,12 +1,12 @@
 # AC1-Tastatur
-Die Software "AC1-Tastatur.ino" ermöglicht die Nutzung einer PS/2-Tastatur am AC1.
+Das Programm "AC1-Tastatur.ino" für den Arduino Nano ermöglicht die Nutzung einer PS/2-Tastatur am AC1.
 
-Mit Hilfe eines Arduino Nano wird das serielle Signal der PS/2-Tastatur in ein paralleles, AC1-konformes Signal gewandelt.
+Dabei wird das serielle Signal der PS/2-Tastatur in ein paralleles, AC1-konformes Signal gewandelt.
 Die Funktionstasten F1 bis F12 können in der Datei "config.h" mit Steuerkommandos oder ganzen Befehlszeilen belegt werden.
 Eine Umschaltung der Kursortasten-Codes für AC1- und CP/M-Programme ist mit der Rollen-Taste möglich. 
-Für den Arduino Nano Every ist die Software im Unterverzeichnis "Every" zu verwenden. 
+Für den Arduino Nano Every ist das Programm "Every.ino" im Unterverzeichnis "Every" zu verwenden. 
 
-Das Kernstück des Programms bildet die Bibliothek "PS2KeyAdvanced" von Paul Carpenter (techpaul).
+Das Kernstück des Programms bildet die Bibliothek "PS2KeyAdvanced" von Paul Carpenter.
 Der Quellcode steht hier: https://github.com/techpaul/PS2KeyAdvanced
 
 Als Hardware wird ein Arduino Nano eingesetzt, der auf Grund seiner geringen Größe im Tastaturgehäuse Platz findet. 
@@ -28,7 +28,7 @@ Die nachfolgenden Abbildungen zeigen die Umsetzung des Tastatur-Projekts (ohne J
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/PS2-Tastatur_mit_Text.jpg)
 
 Für den AC1-2010 http://www.ac1-info.de/ wurde eine Leiterplatte im Europakarten-Format 100 mm × 160 mm 
-mit 64-pol. Steckverbinder erstellt, welche alle Programmfunktionen umsetzt:
+mit 64-pol. Steckverbinder erstellt, welche alle Programmfunktionen unterstützt:
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_AC1-PIO-CTC.jpg)
 

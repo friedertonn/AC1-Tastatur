@@ -131,7 +131,7 @@ void tastenstring(String taste)  // Die Funktion zerlegt einen String in Einzelz
       i += 2;  // die Ziffern 'xy' für die weitere Bearbeitung überspringen
     }
     else parallelausgabe_40ms(puffer[i], false);  // kein Caps-Lock verwenden!
-    delay(15);
+    delay(Tastenstring_Delay);  // Verzögerung zwischen den einzelnen Zeichen, siehe config.h
   }
   grafmode = grafsave;  // ursprünglichen Grafik-Modus wieder einstellen
   digitalWrite(GrafPin, grafmode);
@@ -230,7 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 08.01.2022 ***");
+  Serial.println F("*** Version vom 11.01.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -411,7 +411,7 @@ void loop() {
           } break;
           case 0x1B: code = 0x03; break; // ESC --> ohne Shift als Ctrl+C
           case 0x1C: code = 0x7F; break; // Backspace
-          case 0x1D: code = 0x17; break; // Tab
+          case 0x1D: code = Tastatur_TAB_Taste; break; // TAB, siehe config.h
           case 0x1E: code = 0x0D; break; // Enter
           case 0x1F: code = 0x20; break; // Space
           case 0x20: code = 0x30; break; // NUM+'0'
@@ -479,14 +479,15 @@ void loop() {
       
       else if (s8 == 0x09) {  // weitere Tastencodes mit Alt
         switch (c8) {
-          case 0x1B: {                    // Alt+ESC --> AC1-Reset + PS/2-Tastatur-Reset
+          case 0x1B: {                           // Alt+ESC --> AC1-Reset + PS/2-Tastatur-Reset
             Serial.println F(" ==RESET== ");
             digitalWrite(RESETpin,HIGH);
-            delay(Impulslaenge_Reset);    // siehe config.h
+            delay(Impulslaenge_Reset);           // siehe config.h
             digitalWrite(RESETpin,LOW);
-            keyboard.resetKey();      // Reset PS/2-Tastatur
-            keyboard.setNoRepeat(1);  // kein Repeat für Ctrl,...
-            set_LED();                // LED's an der Tastatur
+            keyboard.resetKey();                 // Reset PS/2-Tastatur
+            keyboard.setNoRepeat(1);             // kein Repeat für Ctrl,...
+            set_LED();                           // LED's an der Tastatur
+            tastenstring(Tastatur_Init_String);  // Ausgabe Init-String, siehe config.h
           }
         }
       }

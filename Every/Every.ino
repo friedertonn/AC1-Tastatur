@@ -52,7 +52,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 08.01.2022 ***");
+  Serial.println F("*** Version vom 11.01.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -159,31 +159,32 @@ void loop() {
       } break;     
           
       case PS2_HOME_CPM: { 
-        tastenstring("\021S");             // unter CP/M: Pos1 = ^QS
+        tastenstring("\021S");               // unter CP/M: Pos1 = ^QS
       } break;
       
       case PS2_END_CPM: { 
-        tastenstring("\021D");             // unter CP/M: Ende = ^QD
+        tastenstring("\021D");               // unter CP/M: Ende = ^QD
       } break;
       
-      case PS2_ESC_CTRL: {                 // Ctrl+ESC --> AC1-NMI
+      case PS2_CTRL_ESC: {                   // Ctrl+ESC --> AC1-NMI
         Serial.println F(" ==NMI== ");
         digitalWrite(NMIpin,HIGH);
-        delay(Impulslaenge_NMI);           // siehe config.h
+        delay(Impulslaenge_NMI);             // siehe config.h
         digitalWrite(NMIpin,LOW);
       } break;       
          
-      case PS2_ESC_ALT: {                  // Alt+ESC --> AC1-Reset
+      case PS2_ALT_ESC: {                    // Alt+ESC --> AC1-Reset
         Serial.println F(" ==RESET== ");
         digitalWrite(RESETpin,HIGH);
-        delay(Impulslaenge_Reset);         // siehe config.h
+        delay(Impulslaenge_Reset);           // siehe config.h
         digitalWrite(RESETpin,LOW);
+        tastenstring(Tastatur_Init_String);  // Ausgabe Init-String, siehe config.h
       } break;
       
-      case AFFENGRIFF: {                   // Ctrl+Alt+Entf --> AC1-Reset
+      case AFFENGRIFF: {                     // Ctrl+Alt+Entf --> AC1-Reset
         Serial.println F(" ==AFFENGRIFF== ");
         digitalWrite(RESETpin,HIGH);
-        delay(Impulslaenge_Reset);         // siehe config.h
+        delay(Impulslaenge_Reset);           // siehe config.h
         digitalWrite(RESETpin,LOW);
       } break;  
              
@@ -225,7 +226,7 @@ void tastenstring(String taste)  // Die Funktion zerlegt einen String in Einzelz
       i += 2;  // die Ziffern 'xy' für die weitere Bearbeitung überspringen
     }
     else parallelausgabe_40ms(puffer[i], false);  // kein Caps-Lock verwenden!
-    delay(15);
+    delay(Tastenstring_Delay);  // Verzögerung zwischen den einzelnen Zeichen, siehe config.h
   }
   grafmode = grafsave;  // ursprünglichen Grafik-Modus wieder einstellen
   digitalWrite(GrafPin, grafmode);

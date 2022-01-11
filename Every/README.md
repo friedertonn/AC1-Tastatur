@@ -1,7 +1,7 @@
 # AC1-Tastatur mit einem Arduino Nano Every
 Die Software "Every.ino" ermöglicht die Nutzung einer PS/2-Tastatur am AC1.
 
-Mit Hilfe des Arduino wird das serielle Signal der PS/2-Tastatur in ein paralleles, AC1-konformes Signal gewandelt.
+Mit Hilfe eines Arduino Nano Every wird das serielle Signal der PS/2-Tastatur in ein paralleles, AC1-konformes Signal gewandelt.
 In der Datei "config.h" können verschiedene Parameter eingestellt werden.
 
 Ein wesentliches Element dieses Programms bildet die Bibliothek "PS2Keyboard" von Paul Stoffregen.
