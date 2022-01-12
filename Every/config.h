@@ -90,7 +90,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " Every.ino - Version vom 11.1.2022"};
+  "", "", "", " Every.ino - Version vom 12.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
@@ -117,16 +117,16 @@ const char* FKT_ALT_CPM[]={
   "", "", "", ""};
 
 // Zum Schluss noch die Joystick-Konfiguration:
-// Welche Joystick-Tastendefinition soll nach dem Reset aktiv sein?
+// Welche Joystick-Tasterdefinition soll nach dem Reset aktiv sein?
 // Mode 1 ist die Joystickabfrage über den SCCH-Monitor 0x0EB4
-// Mode 2 bis 11 emuliert Tastencodes, die frei definiert werden können
+// Mode 2 bis 11 emuliert Tastercodes, die frei definiert werden können
 #define JOY_MODE 2
 
-// Tastenentprellung für den Joystick:
+// Tasterentprellung für den Joystick:
 // Zeit in Millisekunden nach jeder Änderung des Joystick-Codes
 #define JOY_DELAY 40
 
-// Joystick-Tastendefinitionen: 11 Definitionen, 5 Tastencodes: hoch, runter, links, rechts, Feuer
+// Joystick-Tasterdefinitionen: 11 Definitionen, 5 Tastercodes: hoch, runter, links, rechts, Feuer
 const byte JOY_CODE[11][5] = {
   {11, 10, 8, 9, 13},           // Mode 2 (AltGr+F2): AC1-Kursortasten + Enter, z.B. GHOSTTOWN
   {11, 10, 8, 9, 32},           // Mode 3 (AltGr+F3): AC1-Kursortasten + Space, z.B. ACBALL

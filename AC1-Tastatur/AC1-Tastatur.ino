@@ -4,7 +4,7 @@
  * Quellcode: https://github.com/techpaul/PS2KeyAdvanced
  * 
  * Die Konfiguration der Tastatur (Verhalten beim Einschalten, Belegung der 
- * Funktionstasten, Joystick-Tastenbelegungen, Zeitschleifen) erfolgt in der 
+ * Funktionstasten, Joystick-Tasterbelegungen, Zeitschleifen) erfolgt in der 
  * Datei config.h
  */
 
@@ -161,7 +161,7 @@ void parallelausgabe_Joystick(byte code) {  // Joystick-Ausgabe
     digitalWrite(taste, LOW);        // PA7 rücksetzen
     PORTB &= B11110000;              // gesetzte BITs B0-B3 -> D8-D11 = PA0-PA3 rücksetzen
     PORTD &= B10001111;              // gesetzte BITs D4-D6 -> D4-D6  = PA4-PA6 rücksetzen
-    delay(10);                       // 10ms warten
+    delay(10);                       // Entprellung Joystick-Taster
   }
 }
 
@@ -178,7 +178,7 @@ void joystickabfrage() {
   j = hoch + 2 * runter + 4 * links + 8 * rechts + 16 * feuer;
   if (j != joy_code) {
     joy_code = j;
-    if (joy_mode == 1) parallelausgabe_Joystick(joy_code);  // auch mehrere Tasten gleichzeitig
+    if (joy_mode == 1) parallelausgabe_Joystick(joy_code);  // auch mehrere Taster gleichzeitig
     else {                          
       if (joy_code & 0x01)      parallelausgabe_Joystick(JOY_CODE[joy_mode - 2][0]);  // hoch
       else if (joy_code & 0x02) parallelausgabe_Joystick(JOY_CODE[joy_mode - 2][1]);  // runter
@@ -187,7 +187,7 @@ void joystickabfrage() {
       else if (joy_code & 0x16) parallelausgabe_Joystick(JOY_CODE[joy_mode - 2][4]);  // "Feuer"
       else parallelausgabe_Joystick(0);  // Joystick losgelassen
     }
-    delay(JOY_DELAY);  // Tastenentprellung
+    delay(JOY_DELAY);  // Tasterentprellung
   }
 }
 
@@ -230,7 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 11.01.2022 ***");
+  Serial.println F("*** Version vom 12.01.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -487,6 +487,7 @@ void loop() {
             keyboard.resetKey();                 // Reset PS/2-Tastatur
             keyboard.setNoRepeat(1);             // kein Repeat für Ctrl,...
             set_LED();                           // LED's an der Tastatur
+            delay(500);                          // kurz warten, sonst werden Zeichen verschluckt...
             tastenstring(Tastatur_Init_String);  // Ausgabe Init-String, siehe config.h
           }
         }
