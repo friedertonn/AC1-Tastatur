@@ -12,3 +12,10 @@ Als Hardware wird ein Arduino Nano Every eingesetzt. Er wird im ATmega328P-Kompa
 Leider können mit der eingesetzten Bibliothek "PS2Keyboard" die folgenden Funktionen nicht umgesetzt werden:
 - Tastatur-Reset,
 - Einstellen und Abfrage der Status-LEDs.
+
+Die Ursache liegt in einer beim ATMega4809-Prozessor geänderten Interrupt-Behandlung bei der Umschaltung zwischen seriellem Senden und Empfang über die gleiche Datenleitung. Als Workaround können die 3 LEDs über 330 Ohm Widerstände an die PINs D14 bis D16 angeschlossen werden:
+- Rollen-LED an D14
+- CapsLock-LED an D15
+- NumLock-LED an D16
+
+In der Datei config.h muss dann die Definition "#define LED_statt_Joystick" aktiv sein. Wenn diese Option gewählt wird, ist eine Joystick-Nutzung nicht mehr möglich.

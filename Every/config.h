@@ -90,7 +90,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " Every.ino - Version vom 12.1.2022"};
+  "", "", "", " Every.ino - Version vom 21.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={
@@ -115,6 +115,18 @@ const char* FKT_ALT_CPM[]={
   "", "", "", "",
   "", "", "", " F8_ALT_CPM",
   "", "", "", ""};
+
+// Tastatur-LEDs hardwaremäßig an den Arduino Nano Every anschließen:
+// Mit dem Arduino Nano Every ist es mir bisher nicht gelungen, die Tastatur-LEDs per Software anzusteuern.
+// Der Grund liegt in einer beim ATMega4809-Prozessor geänderten Interrupt-Behandlung bei der Umschaltung 
+// zwischen seriellem Senden und Empfang über die gleiche Datenleitung.
+// Als Workaround können die 3 LEDs über 330 Ohm Widerstände an die PINs D14 bis D16 angeschlossen werden:
+// - Rollen-LED an D14
+// - CapsLock-LED an D15
+// - NumLock-LED an D16
+// Dazu muss die nachfolgende Definition aktiv sein. 
+// Wenn diese Option gewählt wird, ist eine Joystick-Nutzung nicht mehr möglich.
+// #define LED_statt_Joystick
 
 // Zum Schluss noch die Joystick-Konfiguration:
 // Welche Joystick-Tasterdefinition soll nach dem Reset aktiv sein?

@@ -22,6 +22,11 @@ const int IRQpin  = 3;    // D3  - PS/2-CLK
 const int GrafPin = 13;   // D13 - SCCH-Grafiktaste --> PIO-B2
 const int RESETpin = 20;  // D20 - AC1-RESET
 const int NMIpin = 21;    // D21 - AC1-NMI
+#ifdef LED_statt_Joystick
+const int CPM_LED = 14;   // D14 - Rollen-LED (Anzeige CP/M-Tastencodes)
+const int CAPS_LED = 15;  // D15 - CapsLock-LED (Anzeige CapsLock)
+const int GRAF_LED = 16;  // D16 - NumLock-LED (Anzeige Grafiktaste)
+#endif
 
 byte c;
 bool kbd_mode;  // Keyboard-Mode: true => PA7=HIGH, bis Taste losgelassen wird; false => 40ms-Impuls auf PA7  
@@ -52,7 +57,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 12.01.2022 ***");
+  Serial.println F("*** Version vom 21.01.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -61,6 +66,12 @@ void setup() {
   else Serial.println F("Tastencodes:  AC1");
   if (grafmode) Serial.println F("Grafiktaste:  an");
   else Serial.println F("Grafiktaste:  aus");
+#ifdef LED_statt_Joystick
+  Serial.println F("Joystick/LED: LED");
+#else
+  Serial.println F("Joystick/LED: Joystick");
+#endif
+
   Serial.println();
 
   // Initialisierung der 8-bit Ausgabe
@@ -69,12 +80,22 @@ void setup() {
   DDRD |= B11110000;       // BIT 4-7 Ausgang
   PORTD &= B00001111;      // gesetzte BITs D4-D7 -> D4-D7  = PA4-PA7 rücksetzen
 
+#ifdef LED_statt_Joystick
+  // Initialisierung Tastatur-LEDs
+  pinMode(CAPS_LED, OUTPUT); 
+  digitalWrite(CAPS_LED, !capslock);
+  pinMode(CPM_LED, OUTPUT); 
+  digitalWrite(CPM_LED, !cpm_mode);
+  pinMode(GRAF_LED, OUTPUT); 
+  digitalWrite(GRAF_LED, !grafmode);
+#else
   // Initialisierung Joystick
   pinMode(14, INPUT_PULLUP); 
   pinMode(15, INPUT_PULLUP); 
   pinMode(16, INPUT_PULLUP); 
   pinMode(17, INPUT_PULLUP); 
   pinMode(18, INPUT_PULLUP); 
+#endif
 
   // Initialisierung Grafiktaste
   pinMode(GrafPin, OUTPUT); 
@@ -144,16 +165,25 @@ void loop() {
       
       case PS2_CAPS: {
         capslock = !capslock; 
+#ifdef LED_statt_Joystick
+        digitalWrite(CAPS_LED, !capslock);
+#endif
         if (capslock) Serial.println F("Caps-Lock: ein"); else (Serial.println F("Caps-Lock: aus")); 
       } break;
       
       case PS2_SCROLL: { 
         cpm_mode = !cpm_mode; 
+#ifdef LED_statt_Joystick
+        digitalWrite(CPM_LED, !cpm_mode);
+#endif
         if (!cpm_mode) Serial.println F("Tastencodes: AC1"); else Serial.println F("Tastencodes: CP/M"); 
       } break;
       
       case PS2_NUM: {
         grafmode = !grafmode;
+#ifdef LED_statt_Joystick
+        digitalWrite(GRAF_LED, !grafmode);
+#endif
         digitalWrite(GrafPin, grafmode);
         if (grafmode) Serial.println F("Grafiktaste: ein"); else Serial.println F("Grafiktaste: aus");
       } break;     
@@ -192,7 +222,9 @@ void loop() {
       default: tastenstring("???"); break;
     }
   }
+#ifndef LED_statt_Joystick  
   else joystickabfrage();
+#endif
 }
 
 void tastenstring(String taste)  // Die Funktion zerlegt einen String in Einzelzeichen und
@@ -210,10 +242,16 @@ void tastenstring(String taste)  // Die Funktion zerlegt einen String in Einzelz
       int d = (1000 * ((int)puffer[i + 1] - 48) + 100 * ((int)puffer[i + 2] - 48));
       if (d == 19000) {       // 'xy' = 'C0' --> Tastenbelegung: AC1
         cpm_mode = false;
+#ifdef LED_statt_Joystick
+        digitalWrite(CPM_LED, !cpm_mode);
+#endif
         Serial.println F("Tastencodes: AC1");
       }
       else if (d == 19100) {  // 'xy' = 'C1' --> Tastenbelegung: CP/M
         cpm_mode = true;
+#ifdef LED_statt_Joystick
+        digitalWrite(CPM_LED, !cpm_mode);
+#endif
         Serial.println F("Tastencodes: CP/M");
       }
       else {
@@ -296,6 +334,7 @@ void parallelausgabe_40ms(byte code, bool use_capslock)   // AC1 ParallelZeichen
   delay(40);                    // 40ms warten
 }
 
+#ifndef LED_statt_Joystick
 void joystickabfrage() {
   byte hoch, runter, links, rechts, feuer;
   byte j=0 ;  
@@ -349,3 +388,4 @@ void parallelausgabe_Joystick(byte code) {  // Joystick-Ausgabe
   }
   delay(10);  // Entprellung Joystick-Taster
 }
+#endif
