@@ -209,7 +209,7 @@ const PROGMEM PS2Keymap_t PS2Keymap_German = {   // AC1-Mode + Grossbuchstaben
   //
   { 0, PS2_ALTGR_F9, 0, PS2_ALTGR_F5, PS2_ALTGR_F3, PS2_ALTGR_F1, PS2_ALTGR_F2, PS2_ALTGR_F12,
   0, PS2_ALTGR_F10, PS2_ALTGR_F8, PS2_ALTGR_F6, PS2_ALTGR_F4, 0, 0, 0,
-  0, 0, 0, 0, 0, '@', 0, 0,
+  0, 0, 0, 0, 0, '@', PS2_ALTGR_1, 0,
   0, 0, 0, 0, 0, 0, PS2_SUPERSCRIPT_TWO, 0,
   0, 0, 0, 0, PS2_EURO_SIGN, 0, PS2_SUPERSCRIPT_THREE, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
