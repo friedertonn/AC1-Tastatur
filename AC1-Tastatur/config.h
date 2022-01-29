@@ -90,7 +90,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " AC1-Tastatur.ino - Version vom 12.1.2022"};
+  "", "", "", " AC1-Tastatur.ino - Version vom 29.1.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 const char* FKT_CPM[]={

@@ -230,7 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 12.01.2022 ***");
+  Serial.println F("*** Version vom 29.01.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -326,6 +326,10 @@ void loop() {
         }
         else if (s8 == 0x04) {       // mit AltGr
           switch (c8) {
+            case '1': {                   // Taste-PA7
+              kbd_mode = true; 
+              Serial.println F("Tastendruck: Taste-PA7"); 
+            } break;
             case '7': code = 0x7B; break; // {
             case '8': code = 0x5B; break; // [
             case '9': code = 0x5D; break; // ]
@@ -495,11 +499,11 @@ void loop() {
       
       else if ((s8 == 0x04) || (s8 == 0x05)) {  // weitere Tastencodes mit AltGr
         switch (c8) {
-          case 0x12: {                   // AltGr+1
+          case 0x12: {                   // AltGr+NUM_1
             kbd_mode = true; 
             Serial.println F("Tastendruck: Taste-PA7"); 
           } break;
-          case 0x19: {                   // AltGr+0
+          case 0x19: {                   // AltGr+NUM_0
             kbd_mode = false; 
             Serial.println F("Tastendruck: 40ms-Impuls"); 
           } break;
