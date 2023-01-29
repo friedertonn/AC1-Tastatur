@@ -17,3 +17,7 @@ Als Workaround können die 3 LEDs über 330 Ohm Widerstände an die PINs D14 bis
 
 In der Datei config.h muss dann die Definition "#define LED_statt_Joystick" aktiv sein.
 Wenn diese Option gewählt wird, ist eine Joystick-Nutzung nicht mehr möglich.
+
+**Wichtiger Hinweis:** Bei einigen aktuell käuflichen Tastaturen, die das PS/2- und das USB-Protokoll unterstützen, 
+müssen ggf. 10K-Pullup-Widerstände an die Takt- und die Datenleitung angelötet werden.
+Danke an Volker und Detlef für die Information.

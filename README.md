@@ -34,3 +34,7 @@ Das Projekt ist auf http://www.ac1-info.de/ --> AC1-2010 --> Baugruppen --> PIO_
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_AC1-PIO-CTC.jpg)
 
 ![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_aufgebaut.jpg)
+
+**Wichtiger Hinweis:** Bei einigen aktuell käuflichen Tastaturen, die das PS/2- und das USB-Protokoll unterstützen, 
+müssen ggf. 10K-Pullup-Widerstände an die Takt- und die Datenleitung angelötet werden.
+Danke an Volker und Detlef für die Information.

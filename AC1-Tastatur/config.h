@@ -6,14 +6,14 @@
 // z.B. Ausführen eines Monitor-Befehls nach Reset, Änderungen der Funktionstasten, ...
 
 // Die Tastatur kann nach jedem Tastatur-Reset eine Zeichenfolge ausgeben,
-// z.B. "W F0 1\015", um den AC1 auf 4 MHz umzuschalten.
-// Der Code '\015' steht dabei die die Enter-Taste.
+// z.B. "W F0 1\r", um den AC1-2010 mit BWS-CPLD auf 4 MHz umzuschalten.
+// Der Code '\r' = '\015' steht dabei die die Enter-Taste.
 // Weitere denkbare Szenarien sind AC1-Monitor-Initialisierungen wie V.24,
 // Centronics, Color, Druckertreiber, usw. (ähnlich AUTOEXEC.BAT).
 // Bei einer Definition: #define Tastatur_Init_String "" wird nichts ausgegeben.
 // Der Befehl '\037' und die nachfolgenden 2 Ziffern 'xy' werden als Delay-Anweisung 
 // mit 'xy' * 100 Millisekunden interpretiert.
-// Beispiel: #define Tastatur_Init_String " Hallo\03710 :)\015"
+// Beispiel: #define Tastatur_Init_String " Hallo\03710 :)\r"
 #define Tastatur_Init_String "\007"  // Tülütütü
 
 // Bei einigen Rechnern ist es notwendig, bei der Ausgabe von Tastenstrings
@@ -46,7 +46,7 @@
 // Festlegen, ob die Tastatur nach Reset mit AC1- oder CP/M-Tastenbelegung startet.
 // Die Definition ist hilfreich, wenn mit "Tastatur_Init_String" ein CP/M-System geladen wird.
 // Die Umschaltung der CP/M-Tastenbelegung erfolgt mit der Rollen-Taste.
-// Die Umschaltung kann auch über die Funktionstasten erfolgen:
+// Die Umschaltung kann auch über die Funktionstasten-Programmierung erfolgen:
 // '\037C1' schaltet auf Tastenbelegung: CP/M
 // '\037C0' schaltet zurück auf Tastenbelegung: AC1
 #define Tastatur_Init_CPM_Mode false
@@ -69,14 +69,15 @@
 // Auch hier kann der Delay-Befehl '\037xy' eingesetzt werden.
 // '\037C1' schaltet auf Tastenbelegung: CP/M
 // '\037C0' schaltet zurück auf Tastenbelegung: AC1
+// normal:
 const char* FKT_AC1[]={
-  "?\015", "", "", "CLS\015", 
+  "?\r", "", "", "CLS\r", 
   "CLOAD", "CSAVE", "", " F8_AC1",
-  "STOP\015", "RUN\015", "LIST\015", "CONT\015"};
+  "STOP\r", "RUN\r", "LIST\r", "CONT\r"};
 
 // mit Shift:
 const char* FKT_SHIFT_AC1[]={
-  "", "WF0 0\015", "", "WF0 1\015",
+  "", "WF0 0\r", "", "WF0 1\r",
   "", "", "", " F8_SHIFT_AC1",
   "", "", "", ""};
 
@@ -90,13 +91,14 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " AC1-Tastatur.ino - Version vom 29.1.2022"};
+  "", "", "", " AC1-Tastatur.ino - Version vom 22.10.2022"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
+// normal:
 const char* FKT_CPM[]={
-  "FC\015", "DIR\015", "", "",
+  "FC\r", "DIR\r", "", "",
   "", "", "", " F8_CPM",
-  "", "", "", "EXIT\015\037C0"};
+  "", "", "", "EXIT\r\037C0"};
 
 // mit Shift:
 const char* FKT_SHIFT_CPM[]={

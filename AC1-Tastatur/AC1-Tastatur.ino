@@ -230,7 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 29.01.2022 ***");
+  Serial.println F("*** Version vom 22.10.2022 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -326,7 +326,7 @@ void loop() {
         }
         else if (s8 == 0x04) {       // mit AltGr
           switch (c8) {
-            case '1': {                   // Taste-PA7
+            case '1': {                   // PA7 ist aktiv, bis die Taste losgelassen wird
               kbd_mode = true; 
               Serial.println F("Tastendruck: Taste-PA7"); 
             } break;
@@ -391,7 +391,7 @@ void loop() {
           } break;
           case 0x15: {                   // Leftarrow-Taste
             if (!cpm_mode) code = 0x08;  // ^H
-            else code = 0x08;            // unter CP/M: ^H
+            else code = 0x13;            // unter CP/M: ^S
           } break;
           case 0x16: {                   // Rightarrow-Taste
             if (!cpm_mode) code = 0x09;  // ^I
@@ -413,8 +413,11 @@ void loop() {
             if (!cpm_mode) code = 0x04;  // ^D
             else code = 0x07;            // unter CP/M: ^G
           } break;
+          case 0x1C: {                   // DEL-Taste / Rubout
+            if (!cpm_mode) code = 0x7F;  // Backspace
+            else code = 0x08;            // unter CP/M: ^H
+          } break;
           case 0x1B: code = 0x03; break; // ESC --> ohne Shift als Ctrl+C
-          case 0x1C: code = 0x7F; break; // Backspace
           case 0x1D: code = Tastatur_TAB_Taste; break; // TAB, siehe config.h
           case 0x1E: code = 0x0D; break; // Enter
           case 0x1F: code = 0x20; break; // Space
@@ -452,6 +455,7 @@ void loop() {
       else if ((s8 == 0x40) || (s8 == 0x41)) {  // weitere Tastencodes mit Shift
         switch (c8) {
           case 0x1B: code = 0x1B; break; // ESC --> mit Shift als "ESC"
+          case 0x1C: code = 0x7F; break; // Backspace
           case 0x3A: code = 0x7B; break; // ä
           case 0x3B: code = 0x3B; break; // ;
           case 0x3C: code = 0x3F; break; // ?
@@ -468,12 +472,25 @@ void loop() {
       
       else if ((s8 == 0x20) || (s8 == 0x21)) {  // weitere Tastencodes mit Ctrl
         switch (c8) {
-          case 0x1B: {                   // Ctrl+ESC --> NMI am AC1
+          case 0x11: {                            // Ctrl+Pos1-Taste
+            if (cpm_mode) tastenstring("\021R");  // unter CP/M: ^QR 
+          } break;
+          case 0x12: {                            // Ctrl+Ende-Taste
+            if (cpm_mode) tastenstring("\021C");  // unter CP/M: ^QC
+          } break;
+          case 0x15: {                            // Leftarrow-Taste
+            if (cpm_mode) code = 0x01;            // unter CP/M: ^A
+          } break;
+          case 0x16: {                            // Rightarrow-Taste
+            if (cpm_mode) code = 0x06;            // unter CP/M: ^F
+          } break;
+          case 0x1B: {                     // Ctrl+ESC --> NMI am AC1
             Serial.println F(" ==NMI== ");
             digitalWrite(NMIpin,HIGH);
-            delay(Impulslaenge_NMI);     // siehe config.h
+            delay(Impulslaenge_NMI);       // siehe config.h
             digitalWrite(NMIpin,LOW);
           } break;       
+          case 0x1C: code = 0x7F; break; // Backspace
           case 0x40: code = 0x1E; break; // ^^
           case 0x3A: code = 0x1B; break; // ^Ä
           case 0x5B: code = 0x1C; break; // ^Ö
