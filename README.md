@@ -21,19 +21,19 @@ GND verbunden.
 
 Die nachfolgenden Abbildungen zeigen die Umsetzung des Tastatur-Projekts (ohne Joystick):
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Arduino-Nano_Schaltplan.gif)
+![Schaltplan](https://github.com/friedertonn/AC1-Tastatur/blob/main/Fotos/Arduino-Nano_Schaltplan.gif?raw=true)
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Arduino-Nano_mit_Text.jpg)
+![Arduino-Nano](https://github.com/friedertonn/AC1-Tastatur/blob/main/Fotos/Arduino-Nano_mit_Text.jpg?raw=true)
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/PS2-Tastatur_mit_Text.jpg)
+![PS2-Tastatur](https://github.com/friedertonn/AC1-Tastatur/blob/main/Fotos/PS2-Tastatur_mit_Text.jpg?raw=true)
 
 Für den AC1-2010 wurde eine Leiterplatte im Europakarten-Format 100 mm × 160 mm 
 mit 64-pol. Steckverbinder erstellt, welche alle Programmfunktionen unterstützt.
 Das Projekt ist auf http://www.ac1-info.de/ --> AC1-2010 --> Baugruppen --> PIO_Joystick zu finden.
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_AC1-PIO-CTC.jpg)
+![Leiterplatte](https://github.com/friedertonn/AC1-Tastatur/blob/main/Fotos/Leiterplatte_AC1-PIO-CTC.jpg?raw=true)
 
-![](https://www.ftonn.de/GIT-Projekte/AC1-Tastatur/Leiterplatte_aufgebaut.jpg)
+![Leiterplatte](https://github.com/friedertonn/AC1-Tastatur/blob/main/Fotos/Leiterplatte_aufgebaut.jpg?raw=true)
 
 **Wichtiger Hinweis:** Bei einigen aktuell käuflichen Tastaturen, die das PS/2- und das USB-Protokoll unterstützen, 
 müssen ggf. 10K-Pullup-Widerstände an die Takt- und die Datenleitung angelötet werden.
