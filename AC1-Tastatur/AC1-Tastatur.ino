@@ -230,7 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 22.10.2022 ***");
+  Serial.println F("*** Version vom 25.07.2024 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -344,7 +344,18 @@ void loop() {
         if (s8 == 0x00) code = c8;              // ohne Shift
         else if (s8 == 0x40) code = c8 + 0x20;  // mit Shift
         else if (s8 == 0x20) code = c8 - 0x40;  // mit Ctrl
+        else if ((s8 == 0x04) && (c8 == 'G')) { // AltGr+G --> grafmode umschalten
+          grafmode = !grafmode;
+          set_LED();
+          if (grafmode) Serial.println F("Grafiktaste: an");
+          else Serial.println F("Grafiktaste: aus");
+        }
         else if ((s8 == 0x04) && (c8 == 'Q')) code = 0x40;  // AltGr+Q --> '@'
+        else if ((s8 == 0x04) && (c8 == 'T')) { // AltGr+T --> kbd_mode umschalten
+          kbd_mode = !kbd_mode;
+          if (kbd_mode) Serial.println F("Tastendruck: Taste-PA7");
+          else Serial.println F("Tastendruck: 40ms-Impuls");
+        }
       }
 
       else if (c8 >= 0x61 && c8 <= 0x6C) {  // Funktionstasten F1 bis F12
@@ -413,12 +424,18 @@ void loop() {
             if (!cpm_mode) code = 0x04;  // ^D
             else code = 0x07;            // unter CP/M: ^G
           } break;
+          case 0x1B: {                   // ESC-Taste
+            if (!cpm_mode) code = 0x03;  // ESC ohne Shift als Ctrl+C
+            else code = 0x1B;            // unter CP/M: ^[
+          } break;
           case 0x1C: {                   // DEL-Taste / Rubout
             if (!cpm_mode) code = 0x7F;  // Backspace
             else code = 0x08;            // unter CP/M: ^H
           } break;
-          case 0x1B: code = 0x03; break; // ESC --> ohne Shift als Ctrl+C
-          case 0x1D: code = Tastatur_TAB_Taste; break; // TAB, siehe config.h
+          case 0x1D: {                   // TAB-Taste
+            if (!cpm_mode) code = Tastatur_TAB_Taste;  // siehe config.h
+            else code = 0x09;            // unter CP/M: ^I
+          } break;
           case 0x1E: code = 0x0D; break; // Enter
           case 0x1F: code = 0x20; break; // Space
           case 0x20: code = 0x30; break; // NUM+'0'
@@ -454,8 +471,21 @@ void loop() {
 
       else if ((s8 == 0x40) || (s8 == 0x41)) {  // weitere Tastencodes mit Shift
         switch (c8) {
-          case 0x1B: code = 0x1B; break; // ESC --> mit Shift als "ESC"
+          case 0x11: {                            // Ctrl+Pos1-Taste
+            if (cpm_mode) tastenstring("\021R");  // unter CP/M: ^QR 
+          } break;
+          case 0x12: {                            // Ctrl+Ende-Taste
+            if (cpm_mode) tastenstring("\021C");  // unter CP/M: ^QC
+          } break;
+          case 0x15: {                            // Leftarrow-Taste
+            if (cpm_mode) code = 0x01;            // unter CP/M: ^A
+          } break;
+          case 0x16: {                            // Rightarrow-Taste
+            if (cpm_mode) code = 0x06;            // unter CP/M: ^F
+          } break;
+          case 0x1B: code = 0x1B; break; // ESC mit Shift als "ESC"
           case 0x1C: code = 0x7F; break; // Backspace
+          case 0x1D: code = 0x09; break; // TAB mit Shift als ^I
           case 0x3A: code = 0x7B; break; // ä
           case 0x3B: code = 0x3B; break; // ;
           case 0x3C: code = 0x3F; break; // ?
@@ -490,7 +520,7 @@ void loop() {
             delay(Impulslaenge_NMI);       // siehe config.h
             digitalWrite(NMIpin,LOW);
           } break;       
-          case 0x1C: code = 0x7F; break; // Backspace
+          case 0x1C: code = 0x1F; break; // Backspace
           case 0x40: code = 0x1E; break; // ^^
           case 0x3A: code = 0x1B; break; // ^Ä
           case 0x5B: code = 0x1C; break; // ^Ö

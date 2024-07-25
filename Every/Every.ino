@@ -57,7 +57,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 26.01.2022 ***");
+  Serial.println F("*** Version vom 25.07.2024 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -185,7 +185,7 @@ void loop() {
         digitalWrite(GRAF_LED, !grafmode);
 #endif
         digitalWrite(GrafPin, grafmode);
-        if (grafmode) Serial.println F("Grafiktaste: ein"); else Serial.println F("Grafiktaste: aus");
+        if (grafmode) Serial.println F("Grafiktaste: an"); else Serial.println F("Grafiktaste: aus");
       } break;     
           
       case PS2_HOME_CPM: { 
@@ -218,7 +218,35 @@ void loop() {
         delay(Impulslaenge_Reset);           // siehe config.h
         digitalWrite(RESETpin,LOW);
       } break;  
-             
+
+      case PS2_ESC: { 
+        if (!cpm_mode) parallelausgabe_40ms(PS2_ESC_AC1, false);
+        else parallelausgabe_40ms(PS2_ESC_CPM, false);
+      } break;
+
+      case PS2_TAB: { 
+        if (!cpm_mode) parallelausgabe_40ms(PS2_TAB_AC1, false);
+        else parallelausgabe_40ms(PS2_TAB_CPM, false);
+      } break;
+
+      case PS2_BACKSPACE: { 
+        if (!cpm_mode) parallelausgabe_40ms(PS2_BACKSPACE_AC1, false);
+        else parallelausgabe_40ms(PS2_BACKSPACE_CPM, false);
+      } break;
+
+      case PS2_ALTGR_G: { 
+        grafmode = !grafmode;
+        digitalWrite(GrafPin, grafmode);
+        if (grafmode) Serial.println F("Grafiktaste: an");
+        else Serial.println F("Grafiktaste: aus");
+      } break;
+
+      case PS2_ALTGR_T: { 
+        kbd_mode = !kbd_mode;
+        if (kbd_mode) Serial.println F("Tastendruck: Taste-PA7");
+        else Serial.println F("Tastendruck: 40ms-Impuls");
+      } break;
+
       default: tastenstring("???"); break;
     }
   }

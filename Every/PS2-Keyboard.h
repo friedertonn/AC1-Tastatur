@@ -32,9 +32,12 @@
 // Every call to read() returns a single byte for each
 // keystroke.  These configure what byte will be returned
 // for each "special" key.  To ignore a key, use zero.
-#define PS2_ESC               3  // ESC --> ohne Shift als Ctrl+C
-#define PS2_SHIFT_ESC        27  // ESC --> mit Shift als "ESC"
-#define PS2_TAB            0x0F  // siehe config.h
+#define PS2_ESC_AC1           3  // AC1 = 03h, CP/M = 1Bh
+#define PS2_ESC_CPM          27
+#define PS2_SHIFT_ESC        27  // Shift-ESC = 1BH
+#define PS2_TAB_AC1        0x0F  // AC1 = 0Fh, CP/M = 09h
+#define PS2_TAB_CPM           9
+#define PS2_SHIFT_TAB         9  // Shift-TAB = 09H
 #define PS2_NUM_KOMMA      0x2E  // siehe config.h
 #define PS2_ENTER            13
 #define PS2_INSERT_AC1        5  // AC1 = 05h, CP/M = 16h
@@ -53,8 +56,12 @@
 #define PS2_DOWNARROW_CPM    24
 #define PS2_RIGHTARROW_AC1    9  // AC1 = 09h, CP/M = 04h
 #define PS2_RIGHTARROW_CPM    4
-#define PS2_LEFTARROW_AC1     8  // AC1 = 08h, CP/M = 08h
-#define PS2_LEFTARROW_CPM     8
+#define PS2_LEFTARROW_AC1     8  // AC1 = 08h, CP/M = 13h
+#define PS2_LEFTARROW_CPM    19
+#define PS2_BACKSPACE_AC1   127  // AC1 = 7Fh, CP/M = 08h
+#define PS2_BACKSPACE_CPM     8
+#define PS2_SHIFT_BACKSPACE 127  // Shift-Backspace = 7FH
+#define PS2_CTRL_BACKSPACE   31  // Ctrl-Backspace = 1FH
 #define PS2_EURO_SIGN         0
 #define PS2_SECTION_SIGN      0
 #define PS2_DEGREE_SIGN       0
@@ -68,7 +75,6 @@
 #define PS2_o_DIAERESIS     124  // ö --> |
 #define PS2_u_DIAERESIS     125  // ü --> }
 #define PS2_SHARP_S         126  // ß --> ~
-#define PS2_BACKSPACE       127
 
 #define PS2_F1              128
 #define PS2_F2              129
@@ -141,6 +147,11 @@
 #define PS2_SCROLL          195  // Rollen
 #define PS2_NUM             196  // NUM-Lock 
 #define AFFENGRIFF          197  // CTRL-ALT-ENTF
+#define PS2_ESC             198  // ESC
+#define PS2_TAB             199  // TAB
+#define PS2_BACKSPACE       200  // Backspace/Rubout
+#define PS2_ALTGR_G         201  // AltGr+G - Umschaltung grafmode
+#define PS2_ALTGR_T         202  // AltGr+T - Umschaltung kbd_mode
 
 #define PS2_KEYMAP_SIZE 136
 

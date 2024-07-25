@@ -91,7 +91,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " Every.ino - Version vom 31.8.2022"};
+  "", "", "", " Every.ino - Version vom 25.07.2024"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 // normal:
