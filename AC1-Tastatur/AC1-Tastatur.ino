@@ -230,7 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 25.07.2024 ***");
+  Serial.println F("*** Version vom 29.07.2024 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -471,10 +471,10 @@ void loop() {
 
       else if ((s8 == 0x40) || (s8 == 0x41)) {  // weitere Tastencodes mit Shift
         switch (c8) {
-          case 0x11: {                            // Ctrl+Pos1-Taste
+          case 0x11: {                            // Pos1-Taste
             if (cpm_mode) tastenstring("\021R");  // unter CP/M: ^QR 
           } break;
-          case 0x12: {                            // Ctrl+Ende-Taste
+          case 0x12: {                            // Ende-Taste
             if (cpm_mode) tastenstring("\021C");  // unter CP/M: ^QC
           } break;
           case 0x15: {                            // Leftarrow-Taste
@@ -502,10 +502,10 @@ void loop() {
       
       else if ((s8 == 0x20) || (s8 == 0x21)) {  // weitere Tastencodes mit Ctrl
         switch (c8) {
-          case 0x11: {                            // Ctrl+Pos1-Taste
+          case 0x11: {                            // Pos1-Taste
             if (cpm_mode) tastenstring("\021R");  // unter CP/M: ^QR 
           } break;
-          case 0x12: {                            // Ctrl+Ende-Taste
+          case 0x12: {                            // Ende-Taste
             if (cpm_mode) tastenstring("\021C");  // unter CP/M: ^QC
           } break;
           case 0x15: {                            // Leftarrow-Taste

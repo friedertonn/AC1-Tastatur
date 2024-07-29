@@ -22,6 +22,7 @@
 
 // Die TAB-Taste ist beim ACC mit 0x17 und beim SCCH mit 0x0F belegt.
 // Hier kann man sich für eine der beiden Varianten entscheiden.
+// Unter CP/M hat die TAB-Taste den Code 0x09.
 // Definition in der Datei PS2-Keyboard.h: --> #define PS2_TAB 0x0F 
 
 // Hier kann festgelegt werden, ob (bei eingeschaltetem NUM-Lock) für das Komma im
@@ -91,7 +92,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " Every.ino - Version vom 25.07.2024"};
+  "", "", "", " Every.ino - Version vom 29.07.2024"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 // normal:
