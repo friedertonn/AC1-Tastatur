@@ -230,7 +230,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 29.07.2024 ***");
+  Serial.println F("*** Version vom 31.07.2024 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -432,10 +432,7 @@ void loop() {
             if (!cpm_mode) code = 0x7F;  // Backspace
             else code = 0x08;            // unter CP/M: ^H
           } break;
-          case 0x1D: {                   // TAB-Taste
-            if (!cpm_mode) code = Tastatur_TAB_Taste;  // siehe config.h
-            else code = 0x09;            // unter CP/M: ^I
-          } break;
+          case 0x1D: code = Tastatur_TAB_Taste; break; // TAB-Taste, siehe config.h
           case 0x1E: code = 0x0D; break; // Enter
           case 0x1F: code = 0x20; break; // Space
           case 0x20: code = 0x30; break; // NUM+'0'

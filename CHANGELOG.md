@@ -1,4 +1,4 @@
-## Update vom 29.07.2024
+## Update vom 31.07.2024
 
 ### Neue Funktionen für Tastaturen ohne Nummernblock
 
@@ -11,7 +11,7 @@
 |               | AC1-Modus | CP/M-Modus | mit Shift | mit Ctrl |
 | ------------- | --------- | ---------- | --------- | -------- |
 | **ESC-Taste** | ^C        | ^&#91;     | ^&#91;    |          |
-| **TAB-Taste** | ^O        | ^I         | ^I        |          |
+| **TAB-Taste** | ^O        | ^O         | ^I        |          |
 | **Backspace** | 0x7F      | ^H         | 0x7F      | 0x1F     |
 
 ### Zusätzliche Tastencodes im Steuerblock

@@ -57,7 +57,7 @@ void setup() {
   Serial.println F("Bitte 115200 BAUD einstellen!");
   delay(500);
   Serial.begin(115200); 
-  Serial.println F("*** Version vom 25.07.2024 ***");
+  Serial.println F("*** Version vom 31.07.2024 ***");
   if (kbd_mode) Serial.println F("Tastendruck:  Taste-PA7");
   else Serial.println F("Tastendruck:  40ms-Impuls");
   if (capslock) Serial.println F("Caps-Lock:    an");
@@ -222,11 +222,6 @@ void loop() {
       case PS2_ESC: { 
         if (!cpm_mode) parallelausgabe_40ms(PS2_ESC_AC1, false);
         else parallelausgabe_40ms(PS2_ESC_CPM, false);
-      } break;
-
-      case PS2_TAB: { 
-        if (!cpm_mode) parallelausgabe_40ms(PS2_TAB_AC1, false);
-        else parallelausgabe_40ms(PS2_TAB_CPM, false);
       } break;
 
       case PS2_BACKSPACE: { 

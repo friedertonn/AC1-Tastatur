@@ -35,8 +35,7 @@
 #define PS2_ESC_AC1           3  // AC1 = 03h, CP/M = 1Bh
 #define PS2_ESC_CPM          27
 #define PS2_SHIFT_ESC        27  // Shift-ESC = 1BH
-#define PS2_TAB_AC1        0x0F  // AC1 = 0Fh, CP/M = 09h
-#define PS2_TAB_CPM           9
+#define PS2_TAB            0x0F  // siehe config.h
 #define PS2_SHIFT_TAB         9  // Shift-TAB = 09H
 #define PS2_NUM_KOMMA      0x2E  // siehe config.h
 #define PS2_ENTER            13
@@ -148,10 +147,9 @@
 #define PS2_NUM             196  // NUM-Lock 
 #define AFFENGRIFF          197  // CTRL-ALT-ENTF
 #define PS2_ESC             198  // ESC
-#define PS2_TAB             199  // TAB
-#define PS2_BACKSPACE       200  // Backspace/Rubout
-#define PS2_ALTGR_G         201  // AltGr+G - Umschaltung grafmode
-#define PS2_ALTGR_T         202  // AltGr+T - Umschaltung kbd_mode
+#define PS2_BACKSPACE       199  // Backspace
+#define PS2_ALTGR_G         200  // AltGr+G - Umschaltung grafmode
+#define PS2_ALTGR_T         201  // AltGr+T - Umschaltung kbd_mode
 
 #define PS2_KEYMAP_SIZE 136
 

@@ -92,14 +92,14 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " AC1-Tastatur.ino - Version vom 25.07.2024"};
+  "", "", "", " AC1-Tastatur.ino - Version vom 31.07.2024"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 // normal:
 const char* FKT_CPM[]={
   "FC\r", "DIR\r", "", "",
   "", "", "", " F8_CPM",
-  "", "", "", "EXIT\r\037C0"};
+  "", "", "QUIT\r", "EXIT\r\037C0"};
 
 // mit Shift:
 const char* FKT_SHIFT_CPM[]={
