@@ -64,7 +64,7 @@
 // 50 Millisekunden ein guter Wert. Wird der NMI-Impuls direkt an die CPU gelegt, sind 0 Millisekunden
 // ausreichend. Wichtig ist, dass nur 1x NMI ausgelöst wird.
 #define Impulslaenge_Reset 50
-#define Impulslaenge_NMI 0
+#define Impulslaenge_NMI 50
 
 // Definitionen der 12 Funktionstasten im AC1-Modus:
 // Auch hier kann der Delay-Befehl '\037xy' eingesetzt werden.
@@ -92,7 +92,7 @@ const char* FKT_CTRL_AC1[]={
 const char* FKT_ALT_AC1[]={
   "", "", "", "",
   "", "", "", " F8_ALT_AC1",
-  "", "", "", " Every.ino - Version vom 31.07.2024"};
+  "", "", "", " Every.ino - Version vom 05.01.2025"};
 
 // Definitionen der 12 Funktionstasten im CP/M-Modus:
 // normal:
